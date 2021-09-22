@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add("HAKIKISHA ALERT");
         arrayList.add("REQUEST MONEY");
         arrayList.add("MONEY RECEIVED");
+        arrayList.add("hhh");
 
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_expandable_list_item_1,arrayList);
