@@ -10,8 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import okhttp3.OkHttpClient;
@@ -45,13 +50,15 @@ public class MainActivity extends AppCompatActivity {
             }
 //        }
 
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Notification>>(){}.getType();
+        List<Notification> contactList = gson.fromJson(item, type);
 
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("HAKIKISHA ALERT");
-        arrayList.add("HAKIKISHA ALERT");
-        arrayList.add("REQUEST MONEY");
-        arrayList.add("MONEY RECEIVED");
-        arrayList.add(item);
+        for(Notification notification: contactList) {
+            arrayList.add(notification.getTitle());
+        }
+
 
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_expandable_list_item_1,arrayList);
@@ -78,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             //GET request
             OkHttpClient client = new OkHttpClient();
 
-            String url = "https://run.mocky.io/v3/6552e781-44cc-460d-af0b-d552b5171c12";
+            String url = "https://run.mocky.io/v3/1ca86666-85df-49be-b72e-0bacf923d38d";
 
             String item = "";
             Request request = new Request.Builder()
